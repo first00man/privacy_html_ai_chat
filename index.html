@@ -3,22 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محادثة ذكية مع Gemini AI - المعماري احمد السقاف</title>
-    <!-- معلومات المطور -->
-    <meta name="author" content="المعماري احمد السقاف">
-    <meta name="description" content="تطبيق محادثة ذكي مع شخصيات افتراضية - تطوير المعماري احمد السقاف">
-    <meta name="keywords" content="Gemini AI, محادثة, ذكاء اصطناعي, المعماري احمد السقاف, first00man">
-    <meta name="github" content="https://github.com/first00man">
-    
-    <!-- روابط المكتبات -->
+    <title>محادثة ذكية مع Gemini AI - الإصدار المنظم</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    
-    <!-- الأنماط -->
     <style>
+        /* الأنماط تبقى كما هي */
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
-        
         :root {
             --primary-color: #6366f1;
             --secondary-color: #818cf8;
@@ -26,20 +17,17 @@
             --dark-color: #1e293b;
             --light-color: #f8fafc;
         }
-        
         * {
             font-family: 'Tajawal', sans-serif;
             transition: all 0.3s ease;
             box-sizing: border-box;
         }
-        
         body {
             background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
             min-height: 100vh;
             margin: 0;
             padding: 0;
         }
-        
         .chat-bubble-user {
             background-color: var(--primary-color);
             color: white;
@@ -49,7 +37,6 @@
             margin-left: 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
         .chat-bubble-ai {
             background-color: #e2e8f0;
             color: var(--dark-color);
@@ -59,32 +46,26 @@
             margin-right: 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
-        
         .gradient-bg {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
         }
-        
         .glass-effect {
             background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.18);
         }
-        
         .fade-in {
             animation: fadeIn 0.5s ease-in-out;
         }
-        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
         .typing-indicator {
             display: inline-flex;
             align-items: center;
         }
-        
         .typing-dot {
             width: 8px;
             height: 8px;
@@ -93,43 +74,38 @@
             margin: 0 2px;
             animation: typing 1.4s infinite ease-in-out;
         }
-        
         .typing-dot:nth-child(1) { animation-delay: 0s; }
         .typing-dot:nth-child(2) { animation-delay: 0.2s; }
         .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-        
         @keyframes typing {
             0%, 60%, 100% { transform: translateY(0); }
             30% { transform: translateY(-5px); }
         }
-        
         .page-transition {
             animation: pageTransition 0.3s ease-in-out;
         }
-        
         @keyframes pageTransition {
             from { opacity: 0; transform: translateX(20px); }
             to { opacity: 1; transform: translateX(0); }
         }
         
+        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
-        
         ::-webkit-scrollbar-track {
             background: #f1f1f1;
             border-radius: 10px;
         }
-        
         ::-webkit-scrollbar-thumb {
             background: var(--primary-color);
             border-radius: 10px;
         }
-        
         ::-webkit-scrollbar-thumb:hover {
             background: var(--secondary-color);
         }
         
+        /* تحسينات للشاشات الصغيرة */
         @media (max-width: 768px) {
             .container {
                 padding-left: 15px;
@@ -429,31 +405,15 @@
             width: 100%;
             height: 100%;
         }
-        
-        .developer-badge {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            display: inline-flex;
-            align-items: center;
-            margin-right: 10px;
-        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
     <!-- شريط التنقل -->
     <nav class="gradient-bg text-white p-4 shadow-lg">
         <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center">
-                <span class="developer-badge">
-                    <i class="fas fa-code mr-1"></i> المعماري احمد السقاف
-                </span>
-                <h1 class="text-2xl font-bold flex items-center">
-                    <i class="fas fa-robot mr-2"></i> محادثة ذكية مع Gemini
-                </h1>
-            </div>
+            <h1 class="text-2xl font-bold flex items-center">
+                <i class="fas fa-robot mr-2"></i> محادثة ذكية مع Gemini
+            </h1>
             <div class="flex space-x-4 space-x-reverse">
                 <button id="homeBtn" class="nav-btn active">
                     <i class="fas fa-home"></i> الرئيسية
@@ -533,75 +493,19 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                         <h3 class="text-xl font-semibold mb-4 text-indigo-700">حول التطبيق</h3>
-                        <p class="text-gray-600 mb-2">
+                        <p class="text-gray-600">
                             تطبيق محادثة ذكي يستخدم نموذج Gemini-2.5-flash من Google لتقديم تجربة محادثة غنية ومتطورة مع إدارة جلسات متعددة وشخصيات قابلة للتخصيص.
                         </p>
-                        <div class="mt-4">
-                            <h4 class="font-semibold text-gray-700 mb-2">المميزات:</h4>
-                            <ul class="list-disc list-inside text-gray-600 space-y-1">
-                                <li>محادثات فردية مع شخصيات مخصصة</li>
-                                <li>حفظ كامل للمحادثات محلياً</li>
-                                <li>واجهة عربية متكاملة</li>
-                                <li>تصدير واستيراد المحادثات</li>
-                                <li>لا يحتاج إلى سيرفر أو تنصيب</li>
-                            </ul>
-                        </div>
                     </div>
                     <div>
                         <h3 class="text-xl font-semibold mb-4 text-indigo-700">حول المطور</h3>
-                        <div class="flex items-start mb-4">
-                            <div class="ml-3">
-                                <h4 class="font-bold text-gray-800">المعماري احمد السقاف</h4>
-                                <p class="text-gray-600 text-sm">مطور تطبيقات الذكاء الاصطناعي</p>
-                                <div class="flex items-center mt-2 space-x-2 space-x-reverse">
-                                    <a href="https://github.com/first00man" target="_blank" 
-                                       class="text-gray-600 hover:text-indigo-600">
-                                        <i class="fab fa-github"></i> GitHub
-                                    </a>
-                                    <span class="text-gray-300">|</span>
-                                    <a href="https://github.com/first00man/ai-chat-app" target="_blank"
-                                       class="text-gray-600 hover:text-indigo-600">
-                                        <i class="fas fa-code"></i> الكود المصدري
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-blue-50 p-4 rounded-lg">
-                            <h4 class="font-semibold text-blue-800 mb-2">مشاريع أخرى:</h4>
-                            <ul class="text-blue-700 space-y-1">
-                                <li>• <a href="https://nexus-chat-minds.lovable.app" target="_blank" class="hover:underline">Nexus Chat Minds</a> - تطبيق محادثة معرفي</li>
-                                <li>• تطبيق المحادثة الثنائية (قيد التطوير)</li>
-                                <li>• تطبيق المحادثة الجماعية (قيد التطوير)</li>
-                            </ul>
-                        </div>
+                        <p class="text-gray-600">
+                            تم تطوير هذا التطبيق باستخدام أحدث تقنيات الويب لتقديم تجربة مستخدم سلسة وغنية. جميع البيانات محفوظة محلياً على جهازك لضمان الخصوصية.
+                        </p>
                     </div>
                 </div>
-                
-                <!-- قسم الترخيص والمعلومات القانونية -->
-                <div class="border-t border-gray-200 mt-6 pt-6">
-                    <div class="flex flex-col md:flex-row justify-between items-center">
-                        <div class="text-center md:text-right mb-4 md:mb-0">
-                            <p class="text-gray-500 text-sm">
-                                © 2025 تطبيق المحادثة الذكي. تم التطوير بواسطة المعماري احمد السقاف.
-                            </p>
-                            <p class="text-gray-500 text-sm mt-1">
-                                مرخص تحت <a href="#licenseModal" onclick="showLicenseModal()" class="text-indigo-600 hover:underline">رخصة MIT</a>.
-                            </p>
-                        </div>
-                        <div class="flex space-x-4 space-x-reverse">
-                            <a href="#licenseModal" onclick="showLicenseModal()" class="text-gray-500 hover:text-indigo-600 text-sm">
-                                <i class="fas fa-file-contract ml-1"></i> الرخصة
-                            </a>
-                            <a href="https://github.com/first00man/ai-chat-app/issues" target="_blank" 
-                               class="text-gray-500 hover:text-indigo-600 text-sm">
-                                <i class="fas fa-bug ml-1"></i> الإبلاغ عن مشكلة
-                            </a>
-                            <a href="https://github.com/first00man/ai-chat-app" target="_blank"
-                               class="text-gray-500 hover:text-indigo-600 text-sm">
-                                <i class="fas fa-star ml-1"></i> إعجاب على GitHub
-                            </a>
-                        </div>
-                    </div>
+                <div class="border-t border-gray-200 mt-6 pt-6 text-center text-gray-500">
+                    <p>© 2023 تطبيق المحادثة الذكي. جميع الحقوق محفوظة.</p>
                 </div>
             </div>
         </div>
@@ -732,11 +636,7 @@
                         </button>
                         <div>
                             <h2 id="chatSessionName" class="text-xl font-semibold">محادثة جديدة</h2>
-                            <p id="chatCharacterName" class="text-sm opacity-80">
-                                مع: مساعد ذكي
-                                <span class="text-xs mr-2">•</span>
-                                <span class="text-xs">بواسطة المعماري احمد السقاف</span>
-                            </p>
+                            <p id="chatCharacterName" class="text-sm opacity-80">مع: مساعد ذكي</p>
                         </div>
                     </div>
                     <div class="flex space-x-2 space-x-reverse">
@@ -746,11 +646,6 @@
                         <button id="renameSession" class="bg-white text-indigo-600 p-2 rounded-full hover:bg-indigo-100" title="إعادة تسمية">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <a href="https://github.com/first00man" target="_blank" 
-                           class="bg-white text-indigo-600 p-2 rounded-full hover:bg-indigo-100" 
-                           title="مشاهدة مشاريع المطور">
-                            <i class="fas fa-user"></i>
-                        </a>
                     </div>
                 </div>
                 <div id="chatMessages" class="chat-messages">
@@ -776,83 +671,15 @@
         </div>
     </main>
     
-    <!-- نموذج عرض الرخصة -->
-    <div id="licenseModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-        <div class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-2xl mx-4 max-h-[80vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-semibold text-indigo-700">رخصة MIT</h3>
-                <button onclick="hideLicenseModal()" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="text-gray-700 text-sm space-y-4">
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <h4 class="font-semibold text-lg mb-2">MIT License</h4>
-                    <p class="mb-2">Copyright (c) 2025 المعماري احمد السقاف</p>
-                </div>
-                
-                <p>يُمنح الإذن، مجانًا، لأي شخص يحصل على نسخة من هذا البرنامج والملفات الوثائقية المرتبطة به ("البرنامج")، بالتعامل في البرمجيات دون قيود، ويشمل ذلك الحقوق غير المحدودة لاستخدام ونسخ وتعديل ودمج ونشر وترخيص من الباطن و/أو بيع نسخ من البرنامج، وشريطة أن تُدرج إشعار حقوق النشر أعلاه وإشعار الإذن هذا في جميع النسخ أو الأجزاء الهامة من البرمجيات.</p>
-                
-                <p>البرنامج يُقدم "كما هو"، دون أي ضمان من أي نوع، سواء صريح أو ضمني، بما في ذلك على سبيل المثال لا الحصر ضمانات التجارة والملاءمة لغرض معين وعدم الانتهاك. لا تتحمل المؤلفة في أي حال من الأحوال مسؤولية عن أي مطالبة أو أضرار أو مسؤولية أخرى، سواء في إجراء عقد أو ضرر أو غير ذلك، الناشئة عن أو خارج أو في اتصال مع البرمجيات أو الاستخدام أو المعاملات الأخرى في البرمجيات.</p>
-                
-                <div class="border-t border-gray-200 pt-4 mt-4">
-                    <h4 class="font-semibold mb-2">حقوق المستخدم:</h4>
-                    <ul class="list-disc list-inside space-y-1 text-gray-600">
-                        <li>الحق في استخدام البرنامج لأي غرض</li>
-                        <li>الحق في نسخ وتوزيع البرنامج</li>
-                        <li>الحق في تعديل البرنامج</li>
-                        <li>الحق في دمج البرنامج مع برمجيات أخرى</li>
-                        <li>الحق في بيع نسخ من البرنامج</li>
-                    </ul>
-                </div>
-                
-                <div class="bg-green-50 p-4 rounded-lg">
-                    <h4 class="font-semibold text-green-800 mb-2">شروط الاستخدام:</h4>
-                    <p class="text-green-700">يجب تضمين إشعار حقوق النشر الأصلي ونسخة من هذه الرخصة مع أي توزيع للبرنامج.</p>
-                </div>
-            </div>
-            <div class="mt-6 flex justify-end">
-                <button onclick="hideLicenseModal()" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
-                    فهمت وشكراً
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- إشعارات -->
     <div id="notification" class="notification hidden"></div>
 
     <script>
         // =============================================
-        // تطبيق المحادثة الذكي مع Gemini AI
-        // الإصدار: 1.0.0
-        // المطور: المعماري احمد السقاف
-        // GitHub: https://github.com/first00man
-        // تاريخ الإصدار: 2025
-        // الرخصة: MIT - حر للاستخدام والتعديل
-        // =============================================
-
-        console.log(`
-╔══════════════════════════════════════════╗
-║    تطبيق المحادثة الذكي - الإصدار 1.0    ║
-║    المطور: المعماري احمد السقاف          ║
-║    GitHub: @first00man                  ║
-║    الرخصة: MIT - 2025                   ║
-╚══════════════════════════════════════════╝
-        `);
-
-        // معلومات المطور
-        const DEVELOPER_INFO = {
-            name: 'المعماري احمد السقاف',
-            github: 'first00man',
-            year: 2025,
-            version: '1.0.0'
-        };
-
-        // =============================================
         // خدمات قاعدة البيانات
         // =============================================
 
+        // السطر 1-50: خدمة قاعدة البيانات الرئيسية
         class DatabaseService {
             constructor() {
                 this.db = null;
@@ -862,24 +689,29 @@
 
             async initializeDatabase() {
                 try {
-                    await this.initializeIndexedDB();
+                    if (typeof CapacitorSQLite !== 'undefined') {
+                        this.db = await CapacitorSQLite.createConnection({
+                            database: this.databaseName,
+                            version: 1,
+                            encrypted: false,
+                            mode: 'no-encryption'
+                        });
+                        await this.db.open();
+                    } else {
+                        await this.initializeIndexedDB();
+                    }
+
                     await this.createTables();
                     this.isInitialized = true;
                     console.log('✅ تم تهيئة قاعدة البيانات بنجاح');
                 } catch (error) {
                     console.error('❌ خطأ في تهيئة قاعدة البيانات:', error);
-                    this.showFallbackWarning();
                     throw error;
                 }
             }
 
             async initializeIndexedDB() {
                 return new Promise((resolve, reject) => {
-                    if (!window.indexedDB) {
-                        reject(new Error('المتصفح لا يدعم قاعدة البيانات المحلية'));
-                        return;
-                    }
-
                     const request = indexedDB.open(this.databaseName, 1);
                     
                     request.onerror = () => reject(request.error);
@@ -893,6 +725,52 @@
                         this.createIndexedDBTables(db);
                     };
                 });
+            }
+
+            async createTables() {
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    await this.db.execute(`
+                        CREATE TABLE IF NOT EXISTS characters (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            name TEXT NOT NULL,
+                            description TEXT,
+                            scenario TEXT NOT NULL,
+                            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+                        )
+                    `);
+
+                    await this.db.execute(`
+                        CREATE TABLE IF NOT EXISTS sessions (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            name TEXT NOT NULL,
+                            character_id INTEGER,
+                            character_name TEXT NOT NULL,
+                            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                            last_updated DATETIME DEFAULT CURRENT_TIMESTAMP,
+                            FOREIGN KEY (character_id) REFERENCES characters (id) ON DELETE SET NULL
+                        )
+                    `);
+
+                    await this.db.execute(`
+                        CREATE TABLE IF NOT EXISTS messages (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            session_id INTEGER NOT NULL,
+                            role TEXT NOT NULL CHECK(role IN ('user', 'ai')),
+                            content TEXT NOT NULL,
+                            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                            FOREIGN KEY (session_id) REFERENCES sessions (id) ON DELETE CASCADE
+                        )
+                    `);
+
+                    await this.db.execute(`
+                        CREATE TABLE IF NOT EXISTS app_settings (
+                            key TEXT PRIMARY KEY,
+                            value TEXT NOT NULL,
+                            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+                        )
+                    `);
+                }
             }
 
             createIndexedDBTables(db) {
@@ -923,14 +801,11 @@
                 }
                 return this.isInitialized;
             }
-
-            showFallbackWarning() {
-                console.warn('⚠️  قاعدة البيانات المحلية غير متوفرة، سيتم استخدام التخزين المؤقت');
-            }
         }
 
         const databaseService = new DatabaseService();
 
+        // السطر 51-150: خدمة إدارة الشخصيات
         class CharactersService {
             constructor() {
                 this.tableName = 'characters';
@@ -939,106 +814,171 @@
             async getAllCharacters() {
                 await databaseService.checkDatabaseConnection();
                 
-                return new Promise((resolve, reject) => {
-                    const transaction = databaseService.db.transaction([this.tableName], 'readonly');
-                    const store = transaction.objectStore(this.tableName);
-                    const request = store.getAll();
-                    
-                    request.onsuccess = () => resolve(request.result || []);
-                    request.onerror = () => reject(request.error);
-                });
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    const result = await databaseService.db.query(`SELECT * FROM ${this.tableName} ORDER BY name`);
+                    return result.values || [];
+                } else {
+                    return new Promise((resolve, reject) => {
+                        const transaction = databaseService.db.transaction([this.tableName], 'readonly');
+                        const store = transaction.objectStore(this.tableName);
+                        const request = store.getAll();
+                        
+                        request.onsuccess = () => resolve(request.result || []);
+                        request.onerror = () => reject(request.error);
+                    });
+                }
             }
 
             async getCharacterById(id) {
                 await databaseService.checkDatabaseConnection();
                 
-                return new Promise((resolve, reject) => {
-                    const transaction = databaseService.db.transaction([this.tableName], 'readonly');
-                    const store = transaction.objectStore(this.tableName);
-                    const request = store.get(parseInt(id));
-                    
-                    request.onsuccess = () => resolve(request.result || null);
-                    request.onerror = () => reject(request.error);
-                });
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    const result = await databaseService.db.query(
+                        `SELECT * FROM ${this.tableName} WHERE id = ?`,
+                        [id]
+                    );
+                    return result.values ? result.values[0] : null;
+                } else {
+                    return new Promise((resolve, reject) => {
+                        const transaction = databaseService.db.transaction([this.tableName], 'readonly');
+                        const store = transaction.objectStore(this.tableName);
+                        const request = store.get(parseInt(id));
+                        
+                        request.onsuccess = () => resolve(request.result || null);
+                        request.onerror = () => reject(request.error);
+                    });
+                }
             }
 
             async addCharacter(character) {
                 await databaseService.checkDatabaseConnection();
                 const { name, description, scenario } = character;
                 
-                return new Promise((resolve, reject) => {
-                    const transaction = databaseService.db.transaction([this.tableName], 'readwrite');
-                    const store = transaction.objectStore(this.tableName);
-                    
-                    const characterData = {
-                        name,
-                        description,
-                        scenario,
-                        created_at: new Date().toISOString(),
-                        updated_at: new Date().toISOString()
-                    };
-                    
-                    const request = store.add(characterData);
-                    
-                    request.onsuccess = () => resolve(request.result);
-                    request.onerror = () => reject(request.error);
-                });
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    const result = await databaseService.db.run(
+                        `INSERT INTO ${this.tableName} (name, description, scenario) VALUES (?, ?, ?)`,
+                        [name, description, scenario]
+                    );
+                    return result.changes.lastId;
+                } else {
+                    return new Promise((resolve, reject) => {
+                        const transaction = databaseService.db.transaction([this.tableName], 'readwrite');
+                        const store = transaction.objectStore(this.tableName);
+                        
+                        const characterData = {
+                            name,
+                            description,
+                            scenario,
+                            created_at: new Date().toISOString(),
+                            updated_at: new Date().toISOString()
+                        };
+                        
+                        const request = store.add(characterData);
+                        
+                        request.onsuccess = () => resolve(request.result);
+                        request.onerror = () => reject(request.error);
+                    });
+                }
             }
 
             async updateCharacter(id, character) {
                 await databaseService.checkDatabaseConnection();
                 const { name, description, scenario } = character;
                 
-                return new Promise(async (resolve, reject) => {
-                    const existingChar = await this.getCharacterById(id);
-                    if (!existingChar) {
-                        reject(new Error('الشخصية غير موجودة'));
-                        return;
-                    }
-                    
-                    const transaction = databaseService.db.transaction([this.tableName], 'readwrite');
-                    const store = transaction.objectStore(this.tableName);
-                    
-                    const updatedChar = {
-                        ...existingChar,
-                        name,
-                        description,
-                        scenario,
-                        updated_at: new Date().toISOString()
-                    };
-                    
-                    const request = store.put(updatedChar);
-                    
-                    request.onsuccess = () => resolve(true);
-                    request.onerror = () => reject(request.error);
-                });
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    await databaseService.db.run(
+                        `UPDATE ${this.tableName} SET name = ?, description = ?, scenario = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`,
+                        [name, description, scenario, id]
+                    );
+                } else {
+                    return new Promise(async (resolve, reject) => {
+                        const existingChar = await this.getCharacterById(id);
+                        if (!existingChar) {
+                            reject(new Error('الشخصية غير موجودة'));
+                            return;
+                        }
+                        
+                        const transaction = databaseService.db.transaction([this.tableName], 'readwrite');
+                        const store = transaction.objectStore(this.tableName);
+                        
+                        const updatedChar = {
+                            ...existingChar,
+                            name,
+                            description,
+                            scenario,
+                            updated_at: new Date().toISOString()
+                        };
+                        
+                        const request = store.put(updatedChar);
+                        
+                        request.onsuccess = () => resolve(true);
+                        request.onerror = () => reject(request.error);
+                    });
+                }
+                return true;
             }
 
             async deleteCharacter(id) {
                 await databaseService.checkDatabaseConnection();
                 
-                return new Promise(async (resolve, reject) => {
-                    const sessionsService = new SessionsService();
-                    const sessions = await sessionsService.getAllSessions();
-                    const hasSessions = sessions.some(session => session.characterId == id);
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    const sessionsResult = await databaseService.db.query(
+                        'SELECT COUNT(*) as count FROM sessions WHERE character_id = ?',
+                        [id]
+                    );
                     
-                    if (hasSessions) {
-                        reject(new Error('لا يمكن حذف الشخصية لأنها مرتبطة بجلسات محادثة'));
-                        return;
+                    if (sessionsResult.values && sessionsResult.values[0].count > 0) {
+                        throw new Error('لا يمكن حذف الشخصية لأنها مرتبطة بجلسات محادثة');
                     }
                     
-                    const transaction = databaseService.db.transaction([this.tableName], 'readwrite');
-                    const store = transaction.objectStore(this.tableName);
-                    const request = store.delete(parseInt(id));
-                    
-                    request.onsuccess = () => resolve(true);
-                    request.onerror = () => reject(request.error);
-                });
+                    await databaseService.db.run(`DELETE FROM ${this.tableName} WHERE id = ?`, [id]);
+                } else {
+                    return new Promise(async (resolve, reject) => {
+                        const sessionsService = new SessionsService();
+                        const sessions = await sessionsService.getAllSessions();
+                        const hasSessions = sessions.some(session => session.characterId == id);
+                        
+                        if (hasSessions) {
+                            reject(new Error('لا يمكن حذف الشخصية لأنها مرتبطة بجلسات محادثة'));
+                            return;
+                        }
+                        
+                        const transaction = databaseService.db.transaction([this.tableName], 'readwrite');
+                        const store = transaction.objectStore(this.tableName);
+                        const request = store.delete(parseInt(id));
+                        
+                        request.onsuccess = () => resolve(true);
+                        request.onerror = () => reject(request.error);
+                    });
+                }
+                return true;
+            }
+
+            async searchCharacters(searchTerm) {
+                await databaseService.checkDatabaseConnection();
+                
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    const result = await databaseService.db.query(
+                        `SELECT * FROM ${this.tableName} WHERE name LIKE ? OR description LIKE ? ORDER BY name`,
+                        [`%${searchTerm}%`, `%${searchTerm}%`]
+                    );
+                    return result.values || [];
+                } else {
+                    return new Promise(async (resolve, reject) => {
+                        const allCharacters = await this.getAllCharacters();
+                        const filtered = allCharacters.filter(character => 
+                            character.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                            (character.description && character.description.toLowerCase().includes(searchTerm.toLowerCase()))
+                        );
+                        resolve(filtered);
+                    });
+                }
             }
         }
 
         const charactersService = new CharactersService();
 
+        // السطر 151-300: خدمة إدارة الجلسات والرسائل
         class SessionsService {
             constructor() {
                 this.sessionsTable = 'sessions';
@@ -1048,186 +988,303 @@
             async getAllSessions() {
                 await databaseService.checkDatabaseConnection();
                 
-                return new Promise(async (resolve, reject) => {
-                    const transaction = databaseService.db.transaction([this.sessionsTable], 'readonly');
-                    const store = transaction.objectStore(this.sessionsTable);
-                    const request = store.getAll();
-                    
-                    request.onsuccess = async () => {
-                        const sessions = request.result || [];
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    const result = await databaseService.db.query(`
+                        SELECT s.*, COUNT(m.id) as message_count 
+                        FROM ${this.sessionsTable} s 
+                        LEFT JOIN ${this.messagesTable} m ON s.id = m.session_id 
+                        GROUP BY s.id 
+                        ORDER BY s.last_updated DESC
+                    `);
+                    return result.values || [];
+                } else {
+                    return new Promise(async (resolve, reject) => {
+                        const transaction = databaseService.db.transaction([this.sessionsTable], 'readonly');
+                        const store = transaction.objectStore(this.sessionsTable);
+                        const request = store.getAll();
                         
-                        for (let session of sessions) {
-                            session.message_count = await this.getMessageCount(session.id);
-                        }
-                        
-                        sessions.sort((a, b) => new Date(b.last_updated) - new Date(a.last_updated));
-                        resolve(sessions);
-                    };
-                    request.onerror = () => reject(request.error);
-                });
+                        request.onsuccess = async () => {
+                            const sessions = request.result || [];
+                            
+                            for (let session of sessions) {
+                                session.message_count = await this.getMessageCount(session.id);
+                            }
+                            
+                            sessions.sort((a, b) => new Date(b.last_updated) - new Date(a.last_updated));
+                            resolve(sessions);
+                        };
+                        request.onerror = () => reject(request.error);
+                    });
+                }
             }
 
             async getMessageCount(sessionId) {
-                return new Promise((resolve, reject) => {
-                    const transaction = databaseService.db.transaction([this.messagesTable], 'readonly');
-                    const store = transaction.objectStore(this.messagesTable);
-                    const index = store.index('sessionId');
-                    const request = index.count(sessionId);
-                    
-                    request.onsuccess = () => resolve(request.result);
-                    request.onerror = () => reject(request.error);
-                });
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    const result = await databaseService.db.query(
+                        `SELECT COUNT(*) as count FROM ${this.messagesTable} WHERE session_id = ?`,
+                        [sessionId]
+                    );
+                    return result.values ? result.values[0].count : 0;
+                } else {
+                    return new Promise((resolve, reject) => {
+                        const transaction = databaseService.db.transaction([this.messagesTable], 'readonly');
+                        const store = transaction.objectStore(this.messagesTable);
+                        const index = store.index('sessionId');
+                        const request = index.count(sessionId);
+                        
+                        request.onsuccess = () => resolve(request.result);
+                        request.onerror = () => reject(request.error);
+                    });
+                }
             }
 
             async getSessionWithMessages(sessionId) {
                 await databaseService.checkDatabaseConnection();
                 
-                return new Promise(async (resolve, reject) => {
-                    const transaction1 = databaseService.db.transaction([this.sessionsTable], 'readonly');
-                    const store1 = transaction1.objectStore(this.sessionsTable);
-                    const request1 = store1.get(parseInt(sessionId));
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    const sessionResult = await databaseService.db.query(
+                        `SELECT * FROM ${this.sessionsTable} WHERE id = ?`,
+                        [sessionId]
+                    );
                     
-                    request1.onsuccess = async () => {
-                        if (!request1.result) {
-                            resolve(null);
-                            return;
-                        }
+                    if (!sessionResult.values || sessionResult.values.length === 0) {
+                        return null;
+                    }
+                    
+                    const session = sessionResult.values[0];
+                    
+                    const messagesResult = await databaseService.db.query(
+                        `SELECT * FROM ${this.messagesTable} WHERE session_id = ? ORDER BY timestamp ASC`,
+                        [sessionId]
+                    );
+                    
+                    session.messages = messagesResult.values || [];
+                    return session;
+                } else {
+                    return new Promise(async (resolve, reject) => {
+                        const transaction1 = databaseService.db.transaction([this.sessionsTable], 'readonly');
+                        const store1 = transaction1.objectStore(this.sessionsTable);
+                        const request1 = store1.get(parseInt(sessionId));
                         
-                        const session = request1.result;
-                        
-                        const transaction2 = databaseService.db.transaction([this.messagesTable], 'readonly');
-                        const store2 = transaction2.objectStore(this.messagesTable);
-                        const index = store2.index('sessionId');
-                        const request2 = index.getAll(parseInt(sessionId));
-                        
-                        request2.onsuccess = () => {
-                            session.messages = request2.result || [];
-                            session.messages.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
-                            resolve(session);
+                        request1.onsuccess = async () => {
+                            if (!request1.result) {
+                                resolve(null);
+                                return;
+                            }
+                            
+                            const session = request1.result;
+                            
+                            const transaction2 = databaseService.db.transaction([this.messagesTable], 'readonly');
+                            const store2 = transaction2.objectStore(this.messagesTable);
+                            const index = store2.index('sessionId');
+                            const request2 = index.getAll(parseInt(sessionId));
+                            
+                            request2.onsuccess = () => {
+                                session.messages = request2.result || [];
+                                session.messages.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+                                resolve(session);
+                            };
+                            
+                            request2.onerror = () => reject(request2.error);
                         };
                         
-                        request2.onerror = () => reject(request2.error);
-                    };
-                    
-                    request1.onerror = () => reject(request1.error);
-                });
+                        request1.onerror = () => reject(request1.error);
+                    });
+                }
             }
 
             async createSession(sessionData) {
                 await databaseService.checkDatabaseConnection();
                 const { name, characterId, characterName } = sessionData;
                 
-                return new Promise((resolve, reject) => {
-                    const transaction = databaseService.db.transaction([this.sessionsTable], 'readwrite');
-                    const store = transaction.objectStore(this.sessionsTable);
-                    
-                    const session = {
-                        name,
-                        characterId,
-                        character_name: characterName,
-                        created_at: new Date().toISOString(),
-                        last_updated: new Date().toISOString()
-                    };
-                    
-                    const request = store.add(session);
-                    
-                    request.onsuccess = () => resolve(request.result);
-                    request.onerror = () => reject(request.error);
-                });
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    const result = await databaseService.db.run(
+                        `INSERT INTO ${this.sessionsTable} (name, character_id, character_name) VALUES (?, ?, ?)`,
+                        [name, characterId, characterName]
+                    );
+                    return result.changes.lastId;
+                } else {
+                    return new Promise((resolve, reject) => {
+                        const transaction = databaseService.db.transaction([this.sessionsTable], 'readwrite');
+                        const store = transaction.objectStore(this.sessionsTable);
+                        
+                        const session = {
+                            name,
+                            characterId,
+                            character_name: characterName,
+                            created_at: new Date().toISOString(),
+                            last_updated: new Date().toISOString()
+                        };
+                        
+                        const request = store.add(session);
+                        
+                        request.onsuccess = () => resolve(request.result);
+                        request.onerror = () => reject(request.error);
+                    });
+                }
             }
 
             async updateSessionName(sessionId, newName) {
                 await databaseService.checkDatabaseConnection();
                 
-                return new Promise(async (resolve, reject) => {
-                    const session = await this.getSessionWithMessages(sessionId);
-                    if (!session) {
-                        reject(new Error('الجلسة غير موجودة'));
-                        return;
-                    }
-                    
-                    const transaction = databaseService.db.transaction([this.sessionsTable], 'readwrite');
-                    const store = transaction.objectStore(this.sessionsTable);
-                    
-                    session.name = newName;
-                    session.last_updated = new Date().toISOString();
-                    
-                    const request = store.put(session);
-                    
-                    request.onsuccess = () => resolve(true);
-                    request.onerror = () => reject(request.error);
-                });
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    await databaseService.db.run(
+                        `UPDATE ${this.sessionsTable} SET name = ?, last_updated = CURRENT_TIMESTAMP WHERE id = ?`,
+                        [newName, sessionId]
+                    );
+                } else {
+                    return new Promise(async (resolve, reject) => {
+                        const session = await this.getSessionWithMessages(sessionId);
+                        if (!session) {
+                            reject(new Error('الجلسة غير موجودة'));
+                            return;
+                        }
+                        
+                        const transaction = databaseService.db.transaction([this.sessionsTable], 'readwrite');
+                        const store = transaction.objectStore(this.sessionsTable);
+                        
+                        session.name = newName;
+                        session.last_updated = new Date().toISOString();
+                        
+                        const request = store.put(session);
+                        
+                        request.onsuccess = () => resolve(true);
+                        request.onerror = () => reject(request.error);
+                    });
+                }
+                return true;
             }
 
             async addMessage(sessionId, message) {
                 await databaseService.checkDatabaseConnection();
                 const { role, content } = message;
                 
-                return new Promise(async (resolve, reject) => {
-                    const transaction1 = databaseService.db.transaction([this.messagesTable], 'readwrite');
-                    const store1 = transaction1.objectStore(this.messagesTable);
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    await databaseService.db.run(
+                        `INSERT INTO ${this.messagesTable} (session_id, role, content) VALUES (?, ?, ?)`,
+                        [sessionId, role, content]
+                    );
                     
-                    const messageData = {
-                        sessionId: parseInt(sessionId),
-                        role,
-                        content,
-                        timestamp: new Date().toISOString()
-                    };
-                    
-                    const request1 = store1.add(messageData);
-                    
-                    request1.onsuccess = async () => {
-                        const session = await this.getSessionWithMessages(sessionId);
-                        if (session) {
-                            const transaction2 = databaseService.db.transaction([this.sessionsTable], 'readwrite');
-                            const store2 = transaction2.objectStore(this.sessionsTable);
-                            
-                            session.last_updated = new Date().toISOString();
-                            store2.put(session);
-                        }
-                        resolve(true);
-                    };
-                    
-                    request1.onerror = () => reject(request1.error);
-                });
+                    await databaseService.db.run(
+                        `UPDATE ${this.sessionsTable} SET last_updated = CURRENT_TIMESTAMP WHERE id = ?`,
+                        [sessionId]
+                    );
+                } else {
+                    return new Promise(async (resolve, reject) => {
+                        const transaction1 = databaseService.db.transaction([this.messagesTable], 'readwrite');
+                        const store1 = transaction1.objectStore(this.messagesTable);
+                        
+                        const messageData = {
+                            sessionId: parseInt(sessionId),
+                            role,
+                            content,
+                            timestamp: new Date().toISOString()
+                        };
+                        
+                        const request1 = store1.add(messageData);
+                        
+                        request1.onsuccess = async () => {
+                            const session = await this.getSessionWithMessages(sessionId);
+                            if (session) {
+                                const transaction2 = databaseService.db.transaction([this.sessionsTable], 'readwrite');
+                                const store2 = transaction2.objectStore(this.sessionsTable);
+                                
+                                session.last_updated = new Date().toISOString();
+                                store2.put(session);
+                            }
+                            resolve(true);
+                        };
+                        
+                        request1.onerror = () => reject(request1.error);
+                    });
+                }
+                return true;
             }
 
             async deleteSession(sessionId) {
                 await databaseService.checkDatabaseConnection();
                 
-                return new Promise(async (resolve, reject) => {
-                    const messages = await this.getSessionMessages(sessionId);
-                    const transaction1 = databaseService.db.transaction([this.messagesTable], 'readwrite');
-                    const store1 = transaction1.objectStore(this.messagesTable);
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    await databaseService.db.run(
+                        `DELETE FROM ${this.messagesTable} WHERE session_id = ?`,
+                        [sessionId]
+                    );
                     
-                    messages.forEach(message => {
-                        store1.delete(message.id);
+                    await databaseService.db.run(
+                        `DELETE FROM ${this.sessionsTable} WHERE id = ?`,
+                        [sessionId]
+                    );
+                } else {
+                    return new Promise(async (resolve, reject) => {
+                        const messages = await this.getSessionMessages(sessionId);
+                        const transaction1 = databaseService.db.transaction([this.messagesTable], 'readwrite');
+                        const store1 = transaction1.objectStore(this.messagesTable);
+                        
+                        messages.forEach(message => {
+                            store1.delete(message.id);
+                        });
+                        
+                        const transaction2 = databaseService.db.transaction([this.sessionsTable], 'readwrite');
+                        const store2 = transaction2.objectStore(this.sessionsTable);
+                        const request2 = store2.delete(parseInt(sessionId));
+                        
+                        request2.onsuccess = () => resolve(true);
+                        request2.onerror = () => reject(request2.error);
                     });
-                    
-                    const transaction2 = databaseService.db.transaction([this.sessionsTable], 'readwrite');
-                    const store2 = transaction2.objectStore(this.sessionsTable);
-                    const request2 = store2.delete(parseInt(sessionId));
-                    
-                    request2.onsuccess = () => resolve(true);
-                    request2.onerror = () => reject(request2.error);
-                });
+                }
+                return true;
             }
 
             async getSessionMessages(sessionId) {
-                return new Promise((resolve, reject) => {
-                    const transaction = databaseService.db.transaction([this.messagesTable], 'readonly');
-                    const store = transaction.objectStore(this.messagesTable);
-                    const index = store.index('sessionId');
-                    const request = index.getAll(parseInt(sessionId));
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    const result = await databaseService.db.query(
+                        `SELECT * FROM ${this.messagesTable} WHERE session_id = ? ORDER BY timestamp ASC`,
+                        [sessionId]
+                    );
+                    return result.values || [];
+                } else {
+                    return new Promise((resolve, reject) => {
+                        const transaction = databaseService.db.transaction([this.messagesTable], 'readonly');
+                        const store = transaction.objectStore(this.messagesTable);
+                        const index = store.index('sessionId');
+                        const request = index.getAll(parseInt(sessionId));
+                        
+                        request.onsuccess = () => resolve(request.result || []);
+                        request.onerror = () => reject(request.error);
+                    });
+                }
+            }
+
+            async searchSessions(searchTerm) {
+                await databaseService.checkDatabaseConnection();
+                
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    const result = await databaseService.db.query(`
+                        SELECT s.*, COUNT(m.id) as message_count 
+                        FROM ${this.sessionsTable} s 
+                        LEFT JOIN ${this.messagesTable} m ON s.id = m.session_id 
+                        WHERE s.name LIKE ? OR s.character_name LIKE ? 
+                        GROUP BY s.id 
+                        ORDER BY s.last_updated DESC
+                    `, [`%${searchTerm}%`, `%${searchTerm}%`]);
                     
-                    request.onsuccess = () => resolve(request.result || []);
-                    request.onerror = () => reject(request.error);
-                });
+                    return result.values || [];
+                } else {
+                    return new Promise(async (resolve, reject) => {
+                        const allSessions = await this.getAllSessions();
+                        const filtered = allSessions.filter(session => 
+                            session.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                            session.character_name.toLowerCase().includes(searchTerm.toLowerCase())
+                        );
+                        resolve(filtered);
+                    });
+                }
             }
         }
 
         const sessionsService = new SessionsService();
 
+        // السطر 301-350: خدمة الإعدادات
         class SettingsService {
             constructor() {
                 this.tableName = 'app_settings';
@@ -1236,34 +1293,51 @@
             async setSetting(key, value) {
                 await databaseService.checkDatabaseConnection();
                 
-                return new Promise((resolve, reject) => {
-                    const transaction = databaseService.db.transaction([this.tableName], 'readwrite');
-                    const store = transaction.objectStore(this.tableName);
-                    
-                    const setting = {
-                        key,
-                        value,
-                        updated_at: new Date().toISOString()
-                    };
-                    
-                    const request = store.put(setting);
-                    
-                    request.onsuccess = () => resolve(true);
-                    request.onerror = () => reject(request.error);
-                });
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    await databaseService.db.run(
+                        `INSERT OR REPLACE INTO ${this.tableName} (key, value) VALUES (?, ?)`,
+                        [key, value]
+                    );
+                } else {
+                    return new Promise((resolve, reject) => {
+                        const transaction = databaseService.db.transaction([this.tableName], 'readwrite');
+                        const store = transaction.objectStore(this.tableName);
+                        
+                        const setting = {
+                            key,
+                            value,
+                            updated_at: new Date().toISOString()
+                        };
+                        
+                        const request = store.put(setting);
+                        
+                        request.onsuccess = () => resolve(true);
+                        request.onerror = () => reject(request.error);
+                    });
+                }
+                return true;
             }
 
             async getSetting(key, defaultValue = null) {
                 await databaseService.checkDatabaseConnection();
                 
-                return new Promise((resolve, reject) => {
-                    const transaction = databaseService.db.transaction([this.tableName], 'readonly');
-                    const store = transaction.objectStore(this.tableName);
-                    const request = store.get(key);
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    const result = await databaseService.db.query(
+                        `SELECT value FROM ${this.tableName} WHERE key = ?`,
+                        [key]
+                    );
                     
-                    request.onsuccess = () => resolve(request.result ? request.result.value : defaultValue);
-                    request.onerror = () => reject(request.error);
-                });
+                    return result.values && result.values.length > 0 ? result.values[0].value : defaultValue;
+                } else {
+                    return new Promise((resolve, reject) => {
+                        const transaction = databaseService.db.transaction([this.tableName], 'readonly');
+                        const store = transaction.objectStore(this.tableName);
+                        const request = store.get(key);
+                        
+                        request.onsuccess = () => resolve(request.result ? request.result.value : defaultValue);
+                        request.onerror = () => reject(request.error);
+                    });
+                }
             }
 
             async saveApiKey(apiKey) {
@@ -1277,14 +1351,19 @@
             async deleteApiKey() {
                 await databaseService.checkDatabaseConnection();
                 
-                return new Promise((resolve, reject) => {
-                    const transaction = databaseService.db.transaction([this.tableName], 'readwrite');
-                    const store = transaction.objectStore(this.tableName);
-                    const request = store.delete('gemini_api_key');
-                    
-                    request.onsuccess = () => resolve(true);
-                    request.onerror = () => reject(request.error);
-                });
+                if (typeof CapacitorSQLite !== 'undefined') {
+                    await databaseService.db.run(`DELETE FROM ${this.tableName} WHERE key = ?`, ['gemini_api_key']);
+                } else {
+                    return new Promise((resolve, reject) => {
+                        const transaction = databaseService.db.transaction([this.tableName], 'readwrite');
+                        const store = transaction.objectStore(this.tableName);
+                        const request = store.delete('gemini_api_key');
+                        
+                        request.onsuccess = () => resolve(true);
+                        request.onerror = () => reject(request.error);
+                    });
+                }
+                return true;
             }
         }
 
@@ -1294,6 +1373,21 @@
         // التطبيق الرئيسي
         // =============================================
 
+        // السطر 351-400: تهيئة التطبيق والمتغيرات
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#818cf8',
+                        accent: '#f472b6',
+                        dark: '#1e293b',
+                        light: '#f8fafc'
+                    }
+                }
+            }
+        };
+        
         let apiKey = '';
         let characters = [];
         let sessions = [];
@@ -1304,22 +1398,16 @@
         const navButtons = document.querySelectorAll('.nav-btn');
         const appInfo = document.getElementById('appInfo');
 
-        // تهيئة التطبيق
+        // السطر 401-450: تهيئة التطبيق
         document.addEventListener('DOMContentLoaded', async function() {
             try {
                 await databaseService.initializeDatabase();
                 await loadInitialData();
                 setupEventListeners();
                 showPage('homePage');
-                
-                // عرض رسالة ترحيب
-                setTimeout(() => {
-                    showNotification('مرحباً بك في تطبيق المحادثة الذكي!', 'info');
-                }, 1000);
-                
             } catch (error) {
                 console.error('خطأ في تهيئة التطبيق:', error);
-                showNotification('فشل في تهيئة التطبيق، يرجى تحديث الصفحة', 'error');
+                showNotification('فشل في تهيئة التطبيق', 'error');
             }
         });
         
@@ -1368,6 +1456,7 @@
             characters = await charactersService.getAllCharacters();
         }
 
+        // السطر 451-550: إعداد مستمعي الأحداث
         function setupEventListeners() {
             document.getElementById('homeBtn').addEventListener('click', () => showPage('homePage'));
             document.getElementById('apiKeyBtn').addEventListener('click', () => showPage('apiKeyPage'));
@@ -1402,6 +1491,7 @@
             document.getElementById('importSessionsInput').addEventListener('change', importSessions);
         }
 
+        // السطر 551-650: دوال إدارة الصفحات
         function showPage(pageId) {
             pages.forEach(page => {
                 page.classList.add('hidden');
@@ -1425,7 +1515,7 @@
             }, 300);
         }
 
-        // دوال إدارة مفتاح API
+        // السطر 651-750: دوال إدارة مفتاح API
         async function saveApiKey() {
             const apiKeyInput = document.getElementById('apiKey').value;
             if (apiKeyInput && apiKeyInput !== '••••••••••••••••') {
@@ -1478,7 +1568,7 @@
             }, 3000);
         }
 
-        // دوال إدارة الشخصيات
+        // السطر 751-850: دوال إدارة الشخصيات
         function updateCharactersList() {
             const charactersList = document.getElementById('charactersList');
             if (characters.length === 0) {
@@ -1598,7 +1688,7 @@
             }
         }
 
-        // دوال إدارة الجلسات
+        // السطر 851-950: دوال إدارة الجلسات
         function updateSessionsList() {
             const sessionsList = document.getElementById('sessionsList');
             if (sessions.length === 0) {
@@ -1659,11 +1749,7 @@
                 return;
             }
             
-            const allSessions = await sessionsService.getAllSessions();
-            const filteredSessions = allSessions.filter(session => 
-                session.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                session.character_name.toLowerCase().includes(searchTerm.toLowerCase())
-            );
+            const filteredSessions = await sessionsService.searchSessions(searchTerm);
             
             const sessionsList = document.getElementById('sessionsList');
             
@@ -1706,7 +1792,7 @@
             });
         }
 
-        // دوال المحادثة
+        // السطر 951-1050: دوال المحادثة
         function startNewChat() {
             if (characters.length === 0) {
                 showNotification('يرجى إضافة شخصية على الأقل أولاً!', 'error');
@@ -1851,7 +1937,7 @@
             }
         }
 
-        // دوال الذكاء الاصطناعي
+        // السطر 1051-1150: دوال الذكاء الاصطناعي والإضافية
         async function generateAIResponse(message) {
             try {
                 const context = getFullContext();
@@ -2006,7 +2092,7 @@
             }
         }
 
-        // دوال إضافية
+        // السطر 1151-1200: دوال إضافية
         function showNotification(message, type) {
             const notification = document.getElementById('notification');
             notification.textContent = message;
@@ -2068,10 +2154,7 @@
                 const exportData = {
                     characters: characters,
                     sessions: sessions,
-                    exportDate: new Date().toISOString(),
-                    developer: DEVELOPER_INFO.name,
-                    github: DEVELOPER_INFO.github,
-                    year: DEVELOPER_INFO.year
+                    exportDate: new Date().toISOString()
                 };
                 
                 const dataStr = JSON.stringify(exportData, null, 2);
@@ -2127,25 +2210,6 @@
             reader.readAsText(file);
             event.target.value = '';
         }
-
-        // دوال عرض الرخصة
-        function showLicenseModal() {
-            document.getElementById('licenseModal').classList.remove('hidden');
-        }
-
-        function hideLicenseModal() {
-            document.getElementById('licenseModal').classList.add('hidden');
-        }
-
-        // إضافة نصائح للمطور في الكونسول
-        console.log(`
-💡 نصائح للمطور (المعماري احمد السقاف):
-1. شارك هذا المشروع على GitHub: https://github.com/first00man
-2. أضف نجمة ⭐ للمشروع لزيادة الظهور
-3. شارك المشروع في مجتمعات المطورين العرب
-4. تابع الإحصائيات في GitHub Insights
-5. طلب مراجعة الكود (Code Review) من المطورين
-        `);
     </script>
 </body>
 </html>
